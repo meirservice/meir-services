@@ -15,7 +15,7 @@ const { saveBooking, storageMode } = require('../lib/storage');
     email: 'test@example.com',
     contact: '',
     serviceId: 'not-sure',
-    serviceName: 'Not sure yet, help me decide',
+    serviceName: 'Not sure yet, please recommend one',
     preferredDateTime: new Date(Date.now() + 24 * 3600 * 1000).toISOString(),
     timezone: process.env.OWNER_TIMEZONE || 'Asia/Manila',
     consentAt: new Date().toISOString(),

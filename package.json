@@ -1,5 +1,5 @@
 {
-  "name": "meir-webdev",
+  "name": "meir-services",
   "version": "1.0.0",
   "description": "Website and consultation booking system for Meir Web Development Services",
   "main": "server.js",

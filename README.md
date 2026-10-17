@@ -1,6 +1,6 @@
 # Meir Web Development Services
 
-[![CI](https://github.com/<your-username>/meir-webdev/actions/workflows/ci.yml/badge.svg)](https://github.com/<your-username>/meir-webdev/actions/workflows/ci.yml)
+[![CI](https://github.com/meirservice/meir-services/actions/workflows/ci.yml/badge.svg)](https://github.com/meirservice/meir-services/actions/workflows/ci.yml)
 ![Node](https://img.shields.io/badge/node-%3E%3D18.18-339933?logo=node.js&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Market](https://img.shields.io/badge/market-Philippines-0038a8)
@@ -11,29 +11,34 @@ Agency website and consultation booking system for **Meir Web Development Servic
 
 ## Features
 
-- **Made for Philippine clients:** peso pricing (₱), 50/50 payment terms, GCash / Maya / PayMongo / Xendit messaging, local couriers (J&T, LBC, Lalamove), Viber contact, English / Filipino / Taglish copy, and a PH-focused FAQ
-- **Booking in Philippine time:** consultations limited to Monday–Saturday, 9 AM–6 PM PHT (configurable). Overseas visitors (OFWs, foreign clients) pick in their own clock and see the PHT equivalent
-- **Data Privacy Act of 2012 (RA 10173):** required consent checkbox, validated on the server and recorded with a timestamp
-- **Local SEO:** `en-PH` language, geo meta tags and `ProfessionalService` structured data for Google
-- **Front end:** semantic HTML, modern CSS, vanilla JavaScript; no build step (`public/`)
-- **Back end:** Node.js + Express API (`server.js`, `lib/`)
-- **Storage:** Google Sheets (Sheets API *or* Apps Script), with local JSON fallback for development
-- **Email:** Nodemailer over SMTP (Gmail, Resend, SendGrid, ...)
-  - instant confirmation to the client, with a `.ics` calendar hold
-  - new-booking alert to you; hitting reply goes straight to the client
-- **Hardening:** server-side validation, rate limiting, honeypot spam trap, Helmet security headers, HTML-escaped emails, formula-safe spreadsheet rows
-- **CI:** GitHub Actions runs the API test suite on Node 20 and 22 on every push
+- **Beginner-friendly design** in a soft, light-blue palette, written for non-technical small business owners
+- **4 clear packages with starting prices:** Starter Website, Full Business Website, Online Store, Maintenance & Fixes, plus a "Which one do I need?" helper
+- **Package details & customizer:** "View details & customize" opens a window with everything included, the timeline, what's needed from the client, and optional add-ons (with quantities) and a live estimated total. Choices carry over to the booking page, where they can still be changed. The server re-checks every add-on and calculates the estimate itself. **Edit all package details, add-ons and prices in `lib/services.js`**
+- **How It Works** in 4 simple steps
+- **Payment methods:** PayPal and Wise for international clients, plus GCash, RCBC, MariBank and BDO via QR code for clients in the Philippines. Payment details and deposit instructions are emailed **only after the client confirms they will proceed** (booking and consultation are free)
+- **English site for local and international clients**, priced in **US dollars**. Booking times are converted from each visitor's time zone
+- **New logo:** `public/logo.svg` (icon), `public/logo-full.svg` (icon + name), `public/logo-512.png` (for Facebook, Google, etc.)
+- **Separate booking page** at `/book` (`public/book.html`). Package buttons open it with that package pre-selected
+- **Booking form:** name, email, phone/Viber/Discord, package, preferred date & time (Mon–Sun, 8 AM–8 PM PHT), business description, and Data Privacy Act (RA 10173) consent
+- **Instant emails:** confirmation with next steps to the client, and a new-booking alert to you
+- **Automatic logging:** every booking saved to a Google Sheet ([beginner guide](docs/google-sheets-setup.md)) or to a file on the server
+- **Hosting:** runs on cPanel "Setup Node.js App" (`start.js`), Render or Vercel
 
 ```
-meir-webdev/
+meir-services/
 ├── .github/workflows/ci.yml ← GitHub Actions: tests on every push
-├── docs/screenshot.png
+├── docs/
+│   ├── google-sheets-setup.md ← beginner Google Sheets guide
+│   └── screenshot.png
 ├── public/                 ← the website
-│   ├── index.html
+│   ├── index.html          ← home page
+│   ├── book.html           ← booking page (/book)
+│   ├── packages.js         ← details window + add-on customizer
+│   ├── logo.svg · logo-full.svg · logo-512.png
 │   ├── styles.css
 │   └── app.js
 ├── lib/
-│   ├── services.js         ← list of bookable services (keep in sync with the <select>)
+│   ├── services.js         ← PACKAGE CATALOG: details, add-ons, prices
 │   ├── validate.js         ← server-side form validation
 │   ├── schedule.js         ← consultation hours (PHT by default)
 │   ├── storage.js          ← Google Sheets / Apps Script / local JSON
@@ -47,6 +52,7 @@ meir-webdev/
 ├── tests/api.test.js       ← npm test
 ├── api/index.js            ← Vercel serverless entry
 ├── server.js               ← Express app (local + Render)
+├── start.js                ← startup file for cPanel Node.js App
 ├── vercel.json · render.yaml
 ├── .env.example
 └── LICENSE
@@ -59,7 +65,7 @@ meir-webdev/
 **Requirements:** [Node.js 18.18+](https://nodejs.org) (20 LTS recommended).
 
 ```bash
-cd meir-webdev
+cd meir-services
 npm install
 cp .env.example .env        # Windows: copy .env.example .env
 npm run dev
@@ -107,7 +113,7 @@ Fast, reliable, no extra service in the middle.
 8. **Test:** `npm run test:sheets`. A header row and a test row appear in the sheet.
 
 The header row is created automatically on the first booking. Columns:
-`Booking ID · Submitted At (UTC) · Status · Client Name · Email · Phone / Discord · Service · Preferred Date & Time (Client) · Client Time Zone · Preferred Date & Time (Business TZ) · Preferred Date & Time (UTC ISO) · Project Brief · Privacy Consent (RA 10173)`
+`Booking ID · Submitted At (UTC) · Status · Client Name · Email · Phone / Discord · Service · Preferred Date & Time (Client) · Client Time Zone · Preferred Date & Time (Business TZ) · Preferred Date & Time (UTC ISO) · Project Brief · Privacy Consent (RA 10173) · Add-ons · Estimated Total (USD)`
 
 > Tip: the **Status** column starts as `New`. Change it to `Confirmed`, `Done`, etc. as you work through leads. Add a filter view for a simple CRM.
 
@@ -204,14 +210,14 @@ OWNER_EMAIL=you@yourdomain.com
 This folder is already a git repository with an initial commit on `main`.
 
 1. **Create an empty repo** at <https://github.com/new>
-   - Name: `meir-webdev` (or anything you like)
+   - Name: `meir-services`
    - Public or Private: your choice
    - **Do not** tick "Add a README", ".gitignore" or "license" (they already exist here)
 2. **Push** from this folder:
 
    ```bash
-   cd meir-webdev
-   git remote add origin https://github.com/<your-username>/meir-webdev.git
+   cd meir-services
+   git remote add origin https://github.com/meirservice/meir-services.git
    git push -u origin main
    ```
 
@@ -220,10 +226,9 @@ This folder is already a git repository with an initial commit on `main`.
    Using the GitHub CLI instead? This creates the repo and pushes in one step:
 
    ```bash
-   gh repo create meir-webdev --public --source=. --push
+   gh repo create meir-services --public --source=. --push
    ```
-3. **Update the badge:** in this README, replace `<your-username>` in the CI badge URL with your GitHub username, then commit and push.
-4. Open the **Actions** tab on GitHub. The CI workflow runs the tests automatically; a green check means everything passes.
+3. Open the **Actions** tab on GitHub. The CI workflow runs the tests automatically; a green check means everything passes.
 
 **Never commit `.env`** (it's already in `.gitignore`). Put secrets in Render or Vercel's environment settings instead. If you ever commit a key by accident, revoke it right away (Google Cloud → Service account → Keys; Gmail → App passwords) and create a new one.
 
@@ -268,6 +273,16 @@ Both Render and Vercel: **Settings → Domains → Add**, then create the DNS re
 
 ---
 
+## Updating the live site on cPanel
+
+After pushing changes from Codespaces, run this in **cPanel → Terminal**:
+
+```bash
+cd ~/meir-services && git fetch origin && git reset --hard origin/main && touch tmp/restart.txt
+```
+
+This makes the server match GitHub exactly. Your `.env` settings and saved bookings are not touched.
+
 ## 6. Customize
 
 | What | Where |
@@ -283,9 +298,9 @@ Both Render and Vercel: **Settings → Domains → Add**, then create the DNS re
 
 ### Pre-launch checklist
 
-- [ ] Set your real prices. The ₱25,000 / ₱65,000 / ₱120,000 / ₱3,500-per-month figures are **placeholders** based on typical Philippine freelance rates
+- [ ] Set your real prices. The US$150 / US$350 / US$800 / US$30 starting prices are **placeholders**; change them in `public/index.html` (cards), `public/book.html` (dropdown) and `lib/services.js` (emails)
 - [ ] Replace `hello@meirwebdev.com`, the Facebook link and `https://meirwebdev.com` (footer, JSON-LD in `<head>`, `.env`)
-- [ ] Confirm the payment methods and banks you actually accept (Pricing and FAQ sections)
+- [ ] Confirm the payment methods listed in the Payment Methods section (PayPal, Wise, GCash, RCBC, MariBank, BDO) match the accounts you actually use
 - [ ] Block out holidays: the form accepts any Monday–Saturday, so reschedule by email on Philippine public holidays, or adjust the hours env vars
 - [ ] Add a privacy notice page if you collect more data later; the form already captures RA 10173 consent
 
@@ -311,7 +326,7 @@ Both Render and Vercel: **Settings → Domains → Add**, then create the DNS re
 | Status | Meaning |
 |---|---|
 | `201` | `{ ok: true, id: "MWD-261022-A1B2C3", confirmationEmailSent: true }` |
-| `422` | Validation failed (including slots outside Mon–Sat 9 AM–6 PM PHT, or missing consent). `errors` maps field → message (shown under each field) |
+| `422` | Validation failed (including slots outside Mon–Sun 8 AM–8 PM PHT, or missing consent). `errors` maps field → message (shown under each field) |
 | `429` | Rate limited |
 | `500` | Storage failed. Nothing was saved and no emails were sent |
 
@@ -338,5 +353,5 @@ curl -X POST http://localhost:3000/api/bookings \
 | Apps Script returns `Unauthorized` | `SHARED_SECRET` script property ≠ `APPS_SCRIPT_SECRET` |
 | Gmail `Invalid login: 535` | Use an **App Password**, not your normal password; 2-Step Verification must be on |
 | Emails land in spam | Use your own domain with Resend/SendGrid and add the SPF/DKIM records they provide |
-| "Please pick a time within our consultation hours" | Slots must be Mon–Sat, 9 AM–6 PM PHT by default. Change `BUSINESS_DAYS` / `BUSINESS_HOURS` if your hours differ |
+| "Please pick a time within our consultation hours" | Slots must be Mon–Sun, 8 AM–8 PM PHT by default. Change `BUSINESS_DAYS` / `BUSINESS_HOURS` if your hours differ |
 | Form says "couldn't reach the server" | You opened `index.html` directly. Run `npm run dev` and use `http://localhost:3000` |

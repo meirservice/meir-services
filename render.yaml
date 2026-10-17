@@ -2,7 +2,7 @@
 # Dashboard → New → Blueprint → pick this repo. Then add secrets under Environment.
 services:
   - type: web
-    name: meir-webdev
+    name: meir-services
     runtime: node
     plan: free
     buildCommand: npm install

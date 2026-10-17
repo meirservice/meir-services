@@ -17,6 +17,13 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 
 const { SERVICES } = require('./lib/services');
+
+// Public view of the catalog for the website (details, add-ons, prices).
+const PUBLIC_PACKAGES = SERVICES.filter((s) => s.usd != null).map((s) => ({
+  id: s.id, name: s.name, usd: s.usd, popular: !!s.popular, tagline: s.tagline, description: s.description,
+  timeline: s.timeline, included: s.included, needFromYou: s.needFromYou,
+  addons: s.addons.map((a) => ({ id: a.id, name: a.name, price: a.price, unit: a.unit || null, maxQty: a.maxQty || 1 })),
+}));
 const { getSchedule } = require('./lib/schedule');
 const { validateBooking } = require('./lib/validate');
 const { saveBooking, storageMode } = require('./lib/storage');
@@ -60,7 +67,12 @@ app.get('/api/health', (req, res) => {
 });
 
 app.get('/api/services', (req, res) => {
-  res.json({ ok: true, services: SERVICES });
+  res.json({ ok: true, services: SERVICES.map((s) => ({ id: s.id, name: s.name })) });
+});
+
+app.get('/api/packages', (req, res) => {
+  res.set('Cache-Control', 'public, max-age=300');
+  res.json({ ok: true, packages: PUBLIC_PACKAGES });
 });
 
 // Booking rules the front end uses to guide the date picker (the server re-checks them).

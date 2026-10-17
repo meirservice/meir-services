@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Book a Free Consultation | Meir Web Development Services</title>
+  <meta name="description" content="Book a free 30-minute consultation with Meir Web Development Services. No payment needed to book." />
+  <meta property="og:title" content="Book a Free Consultation | Meir Web Development Services" />
+  <meta property="og:image" content="/logo-512.png" />
+  <meta name="theme-color" content="#3A8FD9" />
+  <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/logo-512.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body class="book-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a href="/" class="logo" aria-label="Meir Web Development Services, home">
+        <img src="/logo.svg" alt="" class="logo-mark" width="44" height="44" />
+        <span class="logo-text"><strong>Meir</strong><span>Web Development Services</span></span>
+      </a>
+
+      <div class="nav-right">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <a href="/#pricing">Services &amp; Pricing</a>
+        <a href="/#how-it-works">How It Works</a>
+        <a href="/#payment">Payment Methods</a>
+        <a href="/#contact">Contact</a>
+        <a href="/book" class="btn btn-primary btn-sm" aria-current="page">Book Consultation</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="book-main">
+    <div class="container">
+      <a href="/" class="back-link">← Back to home</a>
+    </div>
+
+    <section class="book-section">
+      <div class="container booking-grid">
+        <div class="booking-copy">
+          <p class="eyebrow">Book Consultation</p>
+          <h1>Book your free consultation</h1>
+          <p>Tell us a little about your business. It takes about 2 minutes, and you'll get a confirmation email right away.</p>
+
+          <ul class="booking-points">
+            <li><span aria-hidden="true">🕘</span><div><b>Monday to Sunday, 8 AM – 8 PM</b><small>Philippine time (UTC+8). We'll convert it to your time zone.</small></div></li>
+            <li><span aria-hidden="true">💬</span><div><b>30 minutes, completely free</b><small>Google Meet, Zoom, WhatsApp, Viber or Discord</small></div></li>
+            <li><span aria-hidden="true">🔒</span><div><b>No payment needed to book</b><small>You only pay if you decide to proceed after the consultation</small></div></li>
+          </ul>
+
+          <div class="after-box">
+            <h2>What happens after you book?</h2>
+            <ol>
+              <li>We'll confirm your consultation schedule within one business day.</li>
+              <li>We'll have a free call and send you a written quote.</li>
+              <li>Only if you decide to proceed, we'll email the payment details (PayPal, Wise or QR code) and deposit instructions.</li>
+            </ol>
+          </div>
+
+          <div class="chat-box">
+            <p><b>Prefer to chat first?</b> Message us directly:</p>
+            <div class="chat-links">
+              <a href="https://wa.me/639761329770" target="_blank" rel="noopener"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-12.5 7.4L3 20.5l1.6-5.3A8.5 8.5 0 1 1 21 11.5z"/><path d="M9 9.5c.3 2.3 2.2 4.3 4.5 4.8l1.2-1.1 1.8.9"/></svg></span>WhatsApp</a>
+              <a href="mailto:meirwebdevelopment@gmail.com"><span aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>Email</a>
+              <a href="https://www.facebook.com/profile.php?id=61595222862408" target="_blank" rel="noopener"><span aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V9H6.5v3.5H9V21h3.5v-8.5H15l.5-3.5h-3V7a1 1 0 0 1 1-1H15z"/></svg></span>Facebook</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <form id="booking-form" novalidate>
+            <div class="field">
+              <label for="name"><span>Your name</span> <span class="req" aria-hidden="true">*</span></label>
+              <input id="name" name="name" type="text" autocomplete="name" required maxlength="120" placeholder="e.g. Juan Dela Cruz" aria-describedby="err-name" />
+              <p class="field-error" id="err-name" role="alert"></p>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="email"><span>Email address</span> <span class="req" aria-hidden="true">*</span></label>
+                <input id="email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="e.g. juan@gmail.com" aria-describedby="err-email" />
+                <p class="field-error" id="err-email" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="contact"><span>Phone / WhatsApp / Viber</span> <span class="opt">(optional)</span></label>
+                <input id="contact" name="contact" type="text" autocomplete="tel" maxlength="100" placeholder="e.g. +1 555 123 4567" aria-describedby="err-contact" />
+                <p class="field-error" id="err-contact" role="alert"></p>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="serviceId"><span>Package / service</span> <span class="req" aria-hidden="true">*</span></label>
+              <select id="serviceId" name="serviceId" required aria-describedby="err-serviceId">
+                <option value="" disabled selected>Choose a package…</option>
+                <option value="starter-website">Landing Page / Starter Website (starts at US$150)</option>
+                <option value="business-website">Full Business Website (starts at US$350)</option>
+                <option value="ecommerce">E-Commerce / Online Store (starts at US$800)</option>
+                <option value="maintenance">Website Maintenance &amp; Fixes (starts at US$30)</option>
+                <option value="not-sure">Not sure yet, please recommend one</option>
+              </select>
+              <p class="field-error" id="err-serviceId" role="alert"></p>
+            </div>
+
+            <div class="field customizer" id="customizer-field" hidden>
+              <div class="cz-head">
+                <span class="cz-label">Customize your package <span class="opt">(optional)</span></span>
+                <span class="cz-time">Timeline: <b id="cz-timeline"></b></span>
+              </div>
+              <details class="cz-details">
+                <summary>See what's included</summary>
+                <ul id="cz-included"></ul>
+              </details>
+              <div class="addon-list" id="cz-addons" data-scope="book"></div>
+              <div class="pm-total compact">
+                <div class="pm-total-row"><span>Estimated total<br /><span class="pm-total-count" id="cz-count"></span></span><b class="pm-total-num" id="cz-total"></b></div>
+                <small>Your final price is confirmed in a written quote after the consultation. No payment needed to book.</small>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="preferredDateTime"><span>Preferred date &amp; time</span> <span class="req" aria-hidden="true">*</span></label>
+              <input id="preferredDateTime" name="preferredDateTime" type="datetime-local" step="900" required aria-describedby="tz-hint pht-preview err-preferredDateTime" />
+              <p class="hint" id="tz-hint">Available Monday to Sunday, 8:00 AM – 8:00 PM Philippine time.</p>
+              <p class="hint pht-preview" id="pht-preview" hidden></p>
+              <p class="field-error" id="err-preferredDateTime" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="brief"><span>Tell us about your business or project</span> <span class="req" aria-hidden="true">*</span></label>
+              <textarea id="brief" name="brief" rows="5" required minlength="20" maxlength="5000" placeholder="e.g. I run a small bakery in Cavite and want a simple website where customers can see our menu and order for pick-up." aria-describedby="brief-count err-brief"></textarea>
+              <p class="hint" id="brief-count">0 / 5000</p>
+              <p class="field-error" id="err-brief" role="alert"></p>
+            </div>
+
+            <div class="field field-check">
+              <label class="check">
+                <input id="consent" name="consent" type="checkbox" required aria-describedby="err-consent" />
+                <span>I agree that Meir Web Development Services may use my details only to respond to this request, in line with the <b>Data Privacy Act of 2012 (RA 10173)</b>.</span>
+              </label>
+              <p class="field-error" id="err-consent" role="alert"></p>
+            </div>
+
+            <!-- Honeypot: hidden from people, catches spam bots -->
+            <div class="hp" aria-hidden="true">
+              <label for="company_url">Leave this empty</label>
+              <input id="company_url" name="company_url" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit-btn">
+              <span class="btn-label">Submit Booking Request</span>
+              <span class="spinner" aria-hidden="true"></span>
+            </button>
+            <p class="privacy">Your details are private and never shared.</p>
+          </form>
+
+          <div class="success" id="booking-success" hidden tabindex="-1">
+            <div class="success-icon" aria-hidden="true">✓</div>
+            <h2>Thank you! Your request is in.</h2>
+            <p><span>Thanks,</span> <span id="success-name"></span>. <span>We've emailed a confirmation to</span> <b id="success-email"></b>.</p>
+            <ol class="next-steps">
+              <li>We'll confirm your consultation schedule within one business day.</li>
+              <li>We'll have a free call and send you a written quote.</li>
+              <li>Only if you decide to proceed, we'll email the payment details (PayPal, Wise or QR code) and deposit instructions.</li>
+            </ol>
+            <p class="ref"><span>Reference number:</span> <code id="success-id"></code></p>
+            <div class="success-actions">
+              <a href="/" class="btn btn-outline">Back to home</a>
+              <button class="btn btn-outline" id="book-another">Book another</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer site-footer-slim">
+    <div class="container footer-bottom">
+      <p>© <span id="year"></span> Meir Web Development Services · Philippines</p>
+      <span class="slim-links"><a href="https://wa.me/639761329770" target="_blank" rel="noopener">WhatsApp</a> · <a href="mailto:meirwebdevelopment@gmail.com">meirwebdevelopment@gmail.com</a> · <a href="https://www.facebook.com/profile.php?id=61595222862408" target="_blank" rel="noopener">Facebook</a></span>
+    </div>
+  </footer>
+
+  <script src="/packages.js" defer></script>
+  <script src="/app.js" defer></script>
+</body>
+</html>
