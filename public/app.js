@@ -260,7 +260,7 @@
         ? 'Too many requests. Please wait a few minutes and try again.'
         : 'Something went wrong. Please try again.'));
     } catch (err) {
-      showStatus("We couldn't reach the server. Please check your connection and try again, or email us at hello@meirwebdev.com.");
+      showStatus("We couldn't reach the server. Please check your connection and try again, or email us at hello@meirwebdevelopment.com.");
     } finally {
       setLoading(false);
     }
